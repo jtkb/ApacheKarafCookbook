@@ -1,26 +1,29 @@
 package com.packt.jpa.demo.dao;
 
-import java.util.List;
-import java.util.ArrayList;
-
-import javax.persistence.EntityManager;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.EntityExistsException;
-import javax.persistence.TransactionRequiredException;
-
-import java.lang.IllegalArgumentException;
-
-import com.packt.jpa.demo.entity.Recipe;
 import com.packt.jpa.demo.api.RecipeBookService;
+import com.packt.jpa.demo.entity.Recipe;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+import javax.transaction.Transactional.TxType;
 
+@Transactional
 public class RecipeBookServiceDAOImpl implements RecipeBookService {
 
+    // Use the PersistentContext annotation instead of specifying in the 
+    // Blueprint XML file
+    @PersistenceContext(unitName = "recipe")
     private EntityManager em;
 
     public void setEntityManager(EntityManager em) {
         this.em = em;
     }   
 
+    // Use the Transactional annotation instead of specifying in the 
+    // Blueprint XML
+    @Transactional(TxType.SUPPORTS)
     @Override
     public List<Recipe> getRecipes() {
         List<Recipe> result = new ArrayList<Recipe>();

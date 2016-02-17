@@ -12,12 +12,12 @@
         <groupId>com.packt</groupId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
-
+    <groupId>com.javatechnics</groupId>
     <artifactId>jpa-jta</artifactId>
     <packaging>bundle</packaging>
 
     <name>Chapter 7 :: Recipe 4 :: JPA-JTA </name>
-
+    
     <dependencies>
         <dependency>
             <groupId>org.apache.servicemix.bundles</groupId>
@@ -38,11 +38,6 @@
             <groupId>org.osgi</groupId>
             <artifactId>org.osgi.enterprise</artifactId>
             <version>5.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.geronimo.specs</groupId>
-            <artifactId>geronimo-jpa_2.0_spec</artifactId>
-            <version>1.1</version>
         </dependency> 
         <dependency>
             <groupId>org.apache.openjpa</groupId>
@@ -61,7 +56,17 @@
         <dependency>
             <groupId>org.apache.karaf.shell</groupId>
             <artifactId>org.apache.karaf.shell.console</artifactId>
-            <version>3.0.0</version>
+            <version>4.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.transaction</groupId>
+            <artifactId>javax.transaction-api</artifactId>
+            <version>1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.geronimo.specs</groupId>
+            <artifactId>geronimo-jpa_2.0_spec</artifactId>
+            <version>1.0-PFD2</version>
         </dependency>
     </dependencies>
 
@@ -114,14 +119,6 @@
                         </Export-Package>
                         <Import-Package>
                             org.osgi.service.blueprint;resolution:=optional,
-                            javax.persistence;version="[1.1,2)",
-	                    javax.persistence.criteria;version="[1.1,2)",
-                            javax.sql,
-                            org.apache.commons.dbcp;version="[1.4,2)",
-                            org.apache.derby.jdbc,
-                            org.apache.felix.service.command,
-                            org.apache.felix.gogo.commands,
-                            org.apache.karaf.shell.console,
                             *
                         </Import-Package>
                     </instructions>
